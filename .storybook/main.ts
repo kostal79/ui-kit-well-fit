@@ -7,7 +7,14 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
+    "@storybook/addon-styling-webpack",
+    '@storybook/preset-scss',
+    ({
+      name: "@storybook/addon-styling-webpack",
+
+    })
   ],
+  staticDirs: ["../src/assets"],
   framework: {
     name: "@storybook/react-webpack5",
     options: {

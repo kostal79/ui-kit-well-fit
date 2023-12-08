@@ -1,0 +1,48 @@
+@import "foundation";
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*::after {
+  box-sizing: inherit;
+}
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+ul,
+li,
+figure,
+figcaption {
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  position: relative;
+  background-color: $color-body;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+main {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:active {
+  opacity: 0.6;
+}
+
+.limited-wrapper {
+  max-width: 1410px;
+  margin: 0 auto
+}

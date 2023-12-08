@@ -1,23 +1,29 @@
 {
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "ESNext",
+    "target": "es5",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "declaration": true
+  },
+  "ts-node": {
     "compilerOptions": {
-      "outDir": "./dist/",
-      "noImplicitAny": true,
-      "module": "ESNext",
-      "target": "es5",
-      "jsx": "react-jsx",
-      "allowJs": true,
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "allowSyntheticDefaultImports": true,
-      "esModuleInterop": true,
-      "strict": true,
-      "declaration": true
-    },
-    "ts-node": {
-        "compilerOptions": {
-          "module": "CommonJS"
-        }
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist", "*.stories.tsx", "./src/stories"]
-  }
+      "module": "CommonJS"
+    }
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "./src/**/*.stories.ts",
+    "./src/**/*.stories.tsx",
+    "./src/stories"
+  ]
+}

@@ -17,16 +17,20 @@
     "@storybook/addon-interactions": "^7.6.3",
     "@storybook/addon-links": "^7.6.3",
     "@storybook/addon-onboarding": "^1.0.9",
+    "@storybook/addon-styling-webpack": "^0.0.5",
     "@storybook/blocks": "^7.6.3",
     "@storybook/react": "^7.6.3",
     "@storybook/react-webpack5": "^7.6.3",
     "@storybook/test": "^7.6.3",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.10.3",
     "@types/react": "^18.2.42",
     "@types/webpack": "^5.28.5",
     "css-loader": "^6.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
     "storybook": "^7.6.3",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.5.1",
@@ -41,5 +45,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@storybook/preset-scss": "^1.0.3",
+    "clsx": "^2.0.0"
+  }
 }

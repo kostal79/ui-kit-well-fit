@@ -1,2 +1,2 @@
-import { WellButton } from "./wellButton";
-export { WellButton, };
+import { Button } from "./button";
+export { Button };
