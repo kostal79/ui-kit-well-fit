@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PlusIcon } from "../index";
+import { FacebookIcon } from "../index";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-const meta: Meta<typeof PlusIcon> = {
-  title: "Icons/Plus",
-  component: PlusIcon,
+const meta: Meta<typeof FacebookIcon> = {
+  title: "Icons/Facebook",
+  component: FacebookIcon,
   parameters: {
     layout: "centered",
     backgrounds: {
@@ -20,14 +20,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const White: Story = {
-  args: {
-    color: "white"
-  }
-};
-
-export const Red: Story = {
-  args: {
-    color: "#F53B49"
-  }
-};
+export const Base: Story = {}

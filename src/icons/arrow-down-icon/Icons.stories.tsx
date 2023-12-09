@@ -3,15 +3,13 @@ import { ArrowDownIcon } from "../index";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof ArrowDownIcon> = {
-  title: "Icons/Arrow",
+  title: "Icons/ArrowDown",
   component: ArrowDownIcon,
   parameters: {
     layout: "centered",
     backgrounds: {
       values: [
-        { name: 'red', value: '#F53B49' },
         { name: 'grey', value: '#909CB5' },
-        { name: 'white', value: '#F6F6F6' },
       ],
     }, 
   },

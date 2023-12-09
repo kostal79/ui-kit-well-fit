@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   color?: string;
 }
-function MenuIcon({color="white"}: Props): React.ReactNode {
+function CatalogIcon({color="white"}: Props): React.ReactNode {
   return (
     <svg
       width="16"
@@ -77,4 +77,4 @@ function MenuIcon({color="white"}: Props): React.ReactNode {
   );
 }
 
-export default MenuIcon;
+export default CatalogIcon;

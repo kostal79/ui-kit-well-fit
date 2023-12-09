@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
-import { ArrowDownIcon, BasketIcon, MenuIcon, PlusIcon } from "../icons/index";
+import { ArrowDownIcon, BasketIcon, CatalogIcon, PlusIcon } from "../icons/index";
 import React, { Fragment } from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -53,7 +53,7 @@ export const LeftIcon: Story = {
     className: "my-button",
     view: "primary",
     label: "button",
-    IconLeft: MenuIcon,
+    IconLeft: CatalogIcon,
   },
 };
 
@@ -62,7 +62,7 @@ export const RightIcon: Story = {
     className: "my-button",
     view: "primary",
     label: "button",
-    IconRight: MenuIcon,
+    IconRight: CatalogIcon,
   },
 };
 
@@ -71,7 +71,7 @@ export const LeftIconSecondary: Story = {
     className: "my-button",
     view: "secondary",
     label: "button",
-    IconLeft: MenuIcon,
+    IconLeft: CatalogIcon,
   },
 };
 

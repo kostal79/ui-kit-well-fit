@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PlusIcon } from "../index";
+import { ArrowRightIcon } from "../index";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-const meta: Meta<typeof PlusIcon> = {
-  title: "Icons/Plus",
-  component: PlusIcon,
+const meta: Meta<typeof ArrowRightIcon> = {
+  title: "Icons/ArrowRight",
+  component: ArrowRightIcon,
   parameters: {
     layout: "centered",
     backgrounds: {

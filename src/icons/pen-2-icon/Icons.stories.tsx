@@ -9,9 +9,7 @@ const meta: Meta<typeof Pen2Icon> = {
     layout: "centered",
     backgrounds: {
       values: [
-        { name: 'red', value: '#F53B49' },
         { name: 'grey', value: '#909CB5' },
-        { name: 'white', value: '#F6F6F6' },
       ],
     }, 
   },
