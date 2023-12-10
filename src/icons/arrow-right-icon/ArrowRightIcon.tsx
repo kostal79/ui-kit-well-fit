@@ -20,6 +20,7 @@ const ArrowRightIcon: React.FC<Props> = ({ color = "white" }: Props) => {
           stroke={color}
           stroke-linecap="round"
           stroke-linejoin="round"
+          stroke-width="2"
         />
       </svg>
     </>

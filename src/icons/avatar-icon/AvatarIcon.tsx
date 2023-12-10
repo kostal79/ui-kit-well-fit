@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  color: string;
+  color?: string;
 };
 
 const AvatarIcon: React.FC<Props> = ({ color = "white" }: Props) => {

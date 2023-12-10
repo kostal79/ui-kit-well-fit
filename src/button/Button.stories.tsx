@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
-import { ArrowDownIcon, BasketIcon, CatalogIcon, PlusIcon } from "../icons/index";
-import React, { Fragment } from "react";
+import {
+  ArrowDownIcon,
+  ArrowRightIcon,
+  BasketIcon,
+  CatalogIcon,
+  PlusIcon,
+} from "../icons/index";
+import React from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Button> = {
@@ -99,5 +105,48 @@ export const ArrowDown: Story = {
     view: "secondary",
     label: "button",
     IconRight: ArrowDownIcon,
+  },
+};
+
+export const FullWidth: Story = {
+  args: {
+    className: "my-button",
+    view: "primary",
+    label: "button",
+    width: "full",
+  },
+  render: function Render(args) {
+    return (
+      <div style={{ width: "500px" }}>
+        <Button {...args} />
+      </div>
+    );
+  },
+};
+
+export const OverflowLabel: Story = {
+  args: {
+    className: "my-button",
+    view: "primary",
+    label: "werylonglabelbutton",
+    width: "full",
+  },
+  render: function Render(args) {
+    return (
+      <div style={{ width: "160px" }}>
+        <Button {...args} />
+      </div>
+    );
+  },
+};
+
+const whiteArrowRight = () => <ArrowRightIcon color="white" />;
+export const OnlyIcon: Story = {
+  args: {
+    className: "my-button",
+    view: "primary",
+    IconRight: whiteArrowRight,
+    onlyIcon: true,
+    shape: "round",
   },
 };

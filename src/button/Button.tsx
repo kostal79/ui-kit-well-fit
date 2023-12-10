@@ -2,33 +2,60 @@ import React, { FC, PropsWithChildren } from "react";
 import styles from "./Button.module.scss";
 import clsx from "clsx";
 
-type Width = "default" | "full";
-type Size = "s" | "m" | "l";
-type View = "primary" | "secondary" | "disabled";
+export type TagProp = "a" | "button";
+export const defaultTagProp: TagProp = "button";
+export type Width = "default" | "full";
+export const defaultWidth: Width = "default";
+export type Size = "s" | "m" | "l";
+export const defautSize: Size = "l";
+export type View = "primary" | "secondary" | "disabled";
+export const defaultView: View = "primary";
+export type LoadingProp = boolean;
+export type OnlyIconProp = boolean;
+export const defaultLoading: LoadingProp = false;
+export const defaultOnlyIcon: OnlyIconProp = false;
+export type ShapeProp = "round" | "default";
+export const defaultShapeProp: ShapeProp = "default";
+export type HrefProp = string;
+export const defaultHrefProp : HrefProp = "#";
 
-interface IButtonProps {
+export interface IButtonProps {
+  tag: TagProp;
   className: string;
-  label: string;
-  view?: View;
-  width?: Width;
+  label?: string;
+  view: View;
+  width: Width;
+  shape: ShapeProp;
   size: Size;
   IconLeft?: React.ComponentType;
   IconRight?: React.ComponentType;
-  loading?: boolean;
-  onClick?: () => void;
+  onlyIcon: LoadingProp;
+  loading: OnlyIconProp;
+  onClick?: React.EventHandler<React.MouseEvent>;
+  href?: string;
 }
 
 const Button: FC<PropsWithChildren<IButtonProps>> = ({
+  tag = defaultTagProp,
   className,
   label,
-  view = "primary",
+  view = defaultView,
   IconLeft,
   IconRight,
-  width = "default",
-  size = "l",
+  width = defaultWidth,
+  shape = defaultShapeProp,
+  size = defautSize,
+  onlyIcon = defaultOnlyIcon,
+  loading = defaultLoading,
   onClick,
-  loading = false,
+  href = defaultHrefProp,
 }) => {
+  const buttonOnlyIcon =
+    onlyIcon &&
+    !label &&
+    ((IconLeft && !IconRight) || (IconRight && !IconLeft));
+  const buttonLabel = label ?? "";
+
   const buttonClassName = clsx(styles.button, className, {
     [styles.primary]: view === "primary",
     [styles.secondary]: view === "secondary",
@@ -38,6 +65,8 @@ const Button: FC<PropsWithChildren<IButtonProps>> = ({
     [styles["size--s"]]: size === "s",
     [styles["size--m"]]: size === "m",
     [styles["size--l"]]: size === "l",
+    [styles["only-icon"]]: buttonOnlyIcon,
+    [styles["shape--round"]]: shape === "round",
   });
 
   const disabled = view === "disabled";
@@ -48,27 +77,38 @@ const Button: FC<PropsWithChildren<IButtonProps>> = ({
       <div></div>
     </div>
   );
-  
-  return (
-    <button
-      className={buttonClassName}
-      onClick={onClick}
-      disabled={disabled}
-    >
+
+  const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
+    if (!disabled && !loading && onClick) {
+      onClick(e);
+    }
+  };
+
+  const tagContent = (
+    <>
       <div className={clsx(styles.content, { [styles.loading]: loading })}>
         {IconLeft && (
-          <span className={styles["icon--left"]}>
-            {<IconLeft />}
-          </span>
+          <span className={styles["icon--left"]}>{<IconLeft />}</span>
         )}
-        <span className={styles.text}>{label}</span>
+        <span className={styles.text}>{buttonLabel}</span>
         {IconRight && (
-          <span className={styles["icon--right"]}>
-            {<IconRight />}
-          </span>
+          <span className={styles["icon--right"]}>{<IconRight />}</span>
         )}
       </div>
       {loading && loader}
+    </>
+  );
+
+  if (tag === "a") {
+    return (
+      <a className={buttonClassName} href={href}>
+        {tagContent}
+      </a>
+    );
+  }
+  return (
+    <button className={buttonClassName} onClick={clickHandler}>
+      {tagContent}
     </button>
   );
 };
