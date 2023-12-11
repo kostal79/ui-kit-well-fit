@@ -1,0 +1,74 @@
+@import "../styles/foundation/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap");
+
+//label
+.label {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.label__size--s {
+  gap: 12px;
+}
+
+.label__size--l {
+  gap: 10px;
+}
+
+//checkbox
+.checkbox {
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid $color-fonts-grey;
+  border-radius: 2px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  &::before {
+    content: "";
+    box-sizing: inherit;
+    width: 12px;
+    height: 12px;
+    // background-color: $color-green;
+    // border: 1px solid $color-green;
+    // border-radius: 4px;
+    scale: 0;
+    background-image: url("../assets/check_box_active_12x12.svg");
+    transition: 120ms all ease-in-out;
+  }
+}
+
+.checkbox__size--s {
+  width: 12px;
+  height: 12px;
+  transform: translateY(3px);
+}
+
+.checkbox__size--l {
+  width: 16px;
+  height: 16px;
+  transform: translateY(1px);
+  &::before {
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/check_box_active_16х16.svg");
+  }
+}
+
+.checkbox:checked {
+  &::before {
+    scale: 1;
+  }
+}
+
+//text
+.text {
+  font-family: Inter;
+  font-size: 14px;
+  color: $color-secondary-light-grey;
+  font-weight: 400;
+}

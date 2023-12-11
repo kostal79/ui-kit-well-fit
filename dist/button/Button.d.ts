@@ -1,11 +1,34 @@
-import { FC, PropsWithChildren } from "react";
-interface IButtonProps {
+import React, { FC, PropsWithChildren } from "react";
+export type TagProp = "a" | "button";
+export declare const defaultTagProp: TagProp;
+export type Width = "default" | "full";
+export declare const defaultWidth: Width;
+export type Size = "s" | "m" | "l";
+export declare const defautSize: Size;
+export type View = "primary" | "secondary" | "disabled";
+export declare const defaultView: View;
+export type LoadingProp = boolean;
+export type OnlyIconProp = boolean;
+export declare const defaultLoading: LoadingProp;
+export declare const defaultOnlyIcon: OnlyIconProp;
+export type ShapeProp = "round" | "default";
+export declare const defaultShapeProp: ShapeProp;
+export type HrefProp = string;
+export declare const defaultHrefProp: HrefProp;
+export interface IButtonProps {
+    tag: TagProp;
     className: string;
-    label: string;
-    primary?: boolean;
-    disabled?: boolean;
-    icon?: boolean;
-    onClick?: () => void;
+    label?: string;
+    view: View;
+    width: Width;
+    shape: ShapeProp;
+    size: Size;
+    IconLeft?: React.ComponentType;
+    IconRight?: React.ComponentType;
+    onlyIcon: LoadingProp;
+    loading: OnlyIconProp;
+    onClick?: React.EventHandler<React.MouseEvent>;
+    href?: string;
 }
 declare const Button: FC<PropsWithChildren<IButtonProps>>;
 export { Button };

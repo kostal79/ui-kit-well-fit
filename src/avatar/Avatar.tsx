@@ -3,7 +3,7 @@ import styles from "./Avatar.module.scss";
 import { AvatarIcon } from "../icons";
 import clsx from "clsx";
 
-type Props = {
+export type Props = {
   color?: string;
   className?: string;
   url?: string;
@@ -19,4 +19,4 @@ const Avatar: React.FC = ({ color = "#858FA4", className, url }: Props) => {
   );
 };
 
-export default Avatar;
+export {Avatar};
