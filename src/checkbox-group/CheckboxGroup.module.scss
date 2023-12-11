@@ -1,0 +1,22 @@
+@import "../styles/main.scss";
+
+.group {
+    display: flex;
+    gap: 12px;
+}
+
+.order--column {
+    flex-direction: column;
+}
+
+.order--row {
+    flex-direction: row;
+}
+
+.title {
+    margin-bottom: 12px;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 700;
+    color: $color-secondary-light-grey;
+}

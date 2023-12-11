@@ -5,7 +5,7 @@ import styles from "./Checkbox.module.scss";
 export type SizeProp = "s" | "l";
 export const defaultSizeProp: SizeProp = "s";
 
-export interface Props {
+export interface CheckboxProps {
   className?: string;
   name?: string;
   label?: string;
@@ -17,7 +17,7 @@ export interface Props {
   children?: React.ReactNode
 }
 
-const Checkbox: React.FC<PropsWithChildren<Props>> = ({
+const Checkbox: React.FC<PropsWithChildren<CheckboxProps>> = ({
   className,
   name,
   label,
@@ -26,7 +26,7 @@ const Checkbox: React.FC<PropsWithChildren<Props>> = ({
   onChange,
   checked = false,
   children,
-}: Props) => {
+}: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(checked);
   const labeClassName = clsx(styles.label, className!, {
     [styles["label__size--l"]]: size === "l",
@@ -59,7 +59,6 @@ const Checkbox: React.FC<PropsWithChildren<Props>> = ({
         onChange={handleChange}
         checked={isChecked}
         onClick={handleClick}
-        // disabled
       />
       {!children && label && <span className={styles.text}>{label}</span>}
       {!label && children && <span >{children}</span>}
