@@ -22,9 +22,9 @@ type Story = StoryObj<typeof meta>;
 export const GroupColumn: Story = {
   args: {
     items: [
-      { label: "Checkbox", checked: false, value: "check1" },
-      { label: "Checkbox", checked: false, value: "check1" },
-      { label: "Checkbox", checked: false, value: "check1" },
+      { label: "Checkbox1", checked: false, value: "check1" },
+      { label: "Checkbox2", checked: false, value: "check1" },
+      { label: "Checkbox3", checked: false, value: "check1" },
     ],
     title: "Group",
     name: "Group"
@@ -34,13 +34,32 @@ export const GroupColumn: Story = {
 export const GroupRow: Story = {
   args: {
     items: [
-      { label: "Checkbox", checked: false, value: "check1" },
-      { label: "Checkbox", checked: false, value: "check1" },
-      { label: "Checkbox", checked: false, value: "check1" },
+      { label: "Checkbox1", checked: false, value: "check1" },
+      { label: "Checkbox2", checked: false, value: "check1" },
+      { label: "Checkbox3", checked: false, value: "check1" },
     ],
     title: "Group",
     name: "Group",
     order: "row"
+  },
+};
+
+export const GroupWithLimit: Story = {
+  args: {
+    items: [
+      { label: "Checkbox1", checked: false, value: "check1" },
+      { label: "Checkbox2", checked: false, value: "check1" },
+      { label: "Checkbox3", checked: false, value: "check1" },
+      { label: "Checkbox4", checked: false, value: "check1" },
+      { label: "Checkbox5", checked: false, value: "check1" },
+      { label: "Checkbox6", checked: false, value: "check1" },
+      { label: "Checkbox7", checked: false, value: "check1" },
+      { label: "Checkbox8", checked: false, value: "check1" },
+      { label: "Checkbox9", checked: false, value: "check1" },
+    ],
+    title: "Group",
+    name: "Group",
+    limit: 4
   },
 };
 

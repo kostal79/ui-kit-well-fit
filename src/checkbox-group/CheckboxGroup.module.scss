@@ -3,6 +3,7 @@
 .group {
     display: flex;
     gap: 12px;
+    font-family: Inter;
 }
 
 .order--column {
@@ -19,4 +20,11 @@
     font-size: 14px;
     font-weight: 700;
     color: $color-secondary-light-grey;
+}
+
+.more {
+    font-size: 12px;
+    font-weight: 700;
+    color: $color-red;
+    cursor: pointer;
 }
