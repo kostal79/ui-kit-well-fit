@@ -145,8 +145,10 @@ export const OnlyIcon: Story = {
   args: {
     className: "my-button",
     view: "primary",
-    IconRight: whiteArrowRight,
+    IconLeft: whiteArrowRight,
     onlyIcon: true,
     shape: "round",
   },
 };
+
+

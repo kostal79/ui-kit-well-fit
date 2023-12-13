@@ -16,8 +16,17 @@ const config: webpack.Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ["@babel/preset-env", {targets: {node: 'current'}}],
+              "@babel/preset-typescript",
+              "@babel/preset-react",
+            ]
+          }
+        }
       },
       {
         test: /\.s[ac]ss$/i,

@@ -17,25 +17,26 @@ export const defaultOnlyIcon: OnlyIconProp = false;
 export type ShapeProp = "round" | "default";
 export const defaultShapeProp: ShapeProp = "default";
 export type HrefProp = string;
-export const defaultHrefProp : HrefProp = "#";
+export const defaultHrefProp: HrefProp = "#";
 
 export interface IButtonProps {
-  tag: TagProp;
-  className: string;
+  tag?: TagProp;
+  className?: string;
   label?: string;
-  view: View;
-  width: Width;
-  shape: ShapeProp;
-  size: Size;
+  view?: View;
+  width?: Width;
+  shape?: ShapeProp;
+  size?: Size;
   IconLeft?: React.ComponentType;
   IconRight?: React.ComponentType;
-  onlyIcon: LoadingProp;
-  loading: OnlyIconProp;
+  onlyIcon?: OnlyIconProp;
+  loading?: LoadingProp;
   onClick?: React.EventHandler<React.MouseEvent>;
   href?: string;
+  ["data-testid"]?: string;
 }
 
-const Button: FC<PropsWithChildren<IButtonProps>> = ({
+const Button: FC<IButtonProps> = ({
   tag = defaultTagProp,
   className,
   label,
@@ -49,23 +50,24 @@ const Button: FC<PropsWithChildren<IButtonProps>> = ({
   loading = defaultLoading,
   onClick,
   href = defaultHrefProp,
+  "data-testid": DataTestId,
 }) => {
   const buttonOnlyIcon =
     onlyIcon &&
     !label &&
     ((IconLeft && !IconRight) || (IconRight && !IconLeft));
+
   const buttonLabel = label ?? "";
 
   const buttonClassName = clsx(styles.button, className, {
     [styles.primary]: view === "primary",
     [styles.secondary]: view === "secondary",
     [styles.disabled]: view === "disabled",
-    [styles["width--default"]]: width === "default",
     [styles["width--full"]]: width === "full",
     [styles["size--s"]]: size === "s",
     [styles["size--m"]]: size === "m",
     [styles["size--l"]]: size === "l",
-    [styles["only-icon"]]: buttonOnlyIcon,
+    [styles["only-icon"]]: buttonOnlyIcon === true,
     [styles["shape--round"]]: shape === "round",
   });
 
@@ -90,8 +92,8 @@ const Button: FC<PropsWithChildren<IButtonProps>> = ({
         {IconLeft && (
           <span className={styles["icon--left"]}>{<IconLeft />}</span>
         )}
-        <span className={styles.text}>{buttonLabel}</span>
-        {IconRight && (
+        {!onlyIcon && <span className={styles.text}>{buttonLabel}</span>}
+        {!onlyIcon && IconRight && (
           <span className={styles["icon--right"]}>{<IconRight />}</span>
         )}
       </div>
@@ -101,13 +103,21 @@ const Button: FC<PropsWithChildren<IButtonProps>> = ({
 
   if (tag === "a") {
     return (
-      <a className={buttonClassName} href={href}>
+      <a
+        className={buttonClassName}
+        href={href}
+        data-testid={DataTestId && DataTestId}
+      >
         {tagContent}
       </a>
     );
   }
   return (
-    <button className={buttonClassName} onClick={clickHandler}>
+    <button
+      className={buttonClassName}
+      onClick={clickHandler}
+      data-testid={DataTestId && DataTestId}
+    >
       {tagContent}
     </button>
   );
