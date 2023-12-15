@@ -8,12 +8,13 @@ const defaultOrder: Order = "column";
 
 type CheckboxGroupProps = {
   items: CheckboxProps[];
-  name: string;
+  name?: string;
   className?: string;
   order?: Order;
   size?: SizeProp;
   title?: string;
   limit?: number;
+  "data-testid"?: string;
 };
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
@@ -24,8 +25,10 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   title,
   name,
   limit,
+  "data-testid": dataTestId,
 }: CheckboxGroupProps) => {
-    const [visible, setVisible] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
+
   const groupClassName = clsx(styles.group, {
     [styles["order--column"]]: order === "column",
     [styles["order--row"]]: order === "row",
@@ -51,17 +54,21 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     return result;
   };
 
-  const visibleToggler = ():void => {
-    setVisible(true)
-  }
+  const visibleToggler = (): void => {
+    setVisible(true);
+  };
 
   return (
-    <div className={containerClassName}>
+    <div className={containerClassName} data-testid={dataTestId}>
       {title && <h4 className={styles.title}>{title}</h4>}
       <div className={groupClassName}>
         {limit && getItems(items, 1, limit)}
         {!limit && getItems(items, 1, items.length)}
-        {limit && !visible && limit < items.length && <p className={styles.more} onClick={visibleToggler}>Показать еще</p>}
+        {limit && !visible && limit < items.length && (
+          <p className={styles.more} onClick={visibleToggler}>
+            Показать еще
+          </p>
+        )}
         {limit && visible && getItems(items, limit + 1, items.length)}
       </div>
     </div>
