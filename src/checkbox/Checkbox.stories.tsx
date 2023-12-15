@@ -19,6 +19,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const DefaultCheckbox: Story = {
+  args: {},
+};
+
 export const UncheckedS: Story = {
   args: {
     label: "Checkbox",
@@ -78,7 +82,7 @@ export const LongText: Story = {
 const Child: React.FC = () => {
   return (
     <>
-      <h4 style={{marginTop: "0"}}>Title</h4>
+      <h4 style={{ marginTop: "0" }}>Title</h4>
       <div>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sed

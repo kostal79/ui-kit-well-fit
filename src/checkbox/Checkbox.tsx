@@ -14,7 +14,8 @@ export interface CheckboxProps {
   checked?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   inputRef?: React.Ref<HTMLInputElement>;
-  children?: React.ReactNode
+  children?: React.ReactNode;
+  "data-testid"?: string;
 }
 
 const Checkbox: React.FC<PropsWithChildren<CheckboxProps>> = ({
@@ -26,14 +27,16 @@ const Checkbox: React.FC<PropsWithChildren<CheckboxProps>> = ({
   onChange,
   checked = false,
   children,
+  "data-testid": dataTestId,
 }: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(checked);
-  const labeClassName = clsx(styles.label, className!, {
+
+  const labeClassName = clsx(styles.label, className, {
     [styles["label__size--l"]]: size === "l",
     [styles["label__size--s"]]: size === "s",
   });
 
-  const checkboxClassName = clsx(styles.checkbox, {
+  const inputClassName = clsx(styles.checkbox, {
     [styles["checkbox__size--l"]]: size === "l",
     [styles["checkbox__size--s"]]: size === "s",
   });
@@ -48,11 +51,10 @@ const Checkbox: React.FC<PropsWithChildren<CheckboxProps>> = ({
     setIsChecked((prev) => (prev = !prev));
   };
 
-
   return (
-    <label className={labeClassName}>
+    <label className={labeClassName} data-testid={dataTestId!}>
       <input
-        className={checkboxClassName}
+        className={inputClassName}
         type="checkbox"
         name={name}
         value={value!}
@@ -61,7 +63,7 @@ const Checkbox: React.FC<PropsWithChildren<CheckboxProps>> = ({
         onClick={handleClick}
       />
       {!children && label && <span className={styles.text}>{label}</span>}
-      {!label && children && <span >{children}</span>}
+      {!label && children && <span>{children}</span>}
     </label>
   );
 };
