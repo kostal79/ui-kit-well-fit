@@ -1,0 +1,102 @@
+@import "../styles/main.scss";
+
+.container {
+  font-family: Inter;
+  color: $color-secondary-light-grey;
+  width: 100%;
+}
+
+.input {
+  display: block;
+  height: auto;
+  line-height: 150%;
+  border: 1px solid transparentize($color-light-grey, 0.3);
+  width: 100%;
+  outline: none;
+  padding: 8px 10px;
+  font-weight: 400;
+  border-radius: 6px;
+  &::placeholder {
+    color: transparentize($color: $color-dark-grey, $amount: 0.8);
+  }
+  &::-moz-placeholder{
+    color: transparentize($color: $color-dark-grey, $amount: 0.8);
+  }
+  &::-webkit-input-placeholder{
+    color: transparentize($color: $color-dark-grey, $amount: 0.8);
+  }
+}
+
+.input[type="date"] {
+    color: transparentize($color: $color-dark-grey, $amount: 0.8)
+}
+
+.input[type="date"][valueAsDate] {
+    color: red;
+}
+
+.size--s {
+  & .input,
+  .label {
+    font-size: 14px;
+  }
+  & .label {
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  & .icon {
+    top: 11px;
+    right: 10px;
+    & svg {
+      max-height: 16px;
+    }
+  }
+}
+
+.size--l {
+  & .input,
+  .label {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  & .icon {
+    top: 13px;
+    right: 10px;
+    & svg {
+      max-height: 16px;
+    }
+  }
+  & .label {
+    margin-bottom: 16px;
+  }
+}
+
+.background--primary {
+  .input {
+    background-color: white;
+  }
+}
+
+.background--secondary {
+  .input {
+    background-color: $color-body;
+  }
+}
+
+.star {
+  color: $color-red;
+}
+
+.with-icon {
+  & .input-box {
+    position: relative;
+  }
+  & .input {
+    padding-right: 40px;
+  }
+  & .icon {
+    display: grid;
+    place-content: center;
+    position: absolute;
+  }
+}

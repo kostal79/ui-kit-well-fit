@@ -19,6 +19,7 @@ import PhoneIcon from "./phone-icon/PhoneIcon";
 import AccountIcon from "./account-icon/AccountIcon";
 import AvatarIcon from "./avatar-icon/AvatarIcon";
 import FilterIcon from "./filter-icon/FilterIcon";
+import NonVisibleIcon from "./non-visible-icon/NonVisibleIcon";
 
 export {
     CatalogIcon,
@@ -42,4 +43,5 @@ export {
     AccountIcon,
     AvatarIcon,
     FilterIcon,
+    NonVisibleIcon,
 };
