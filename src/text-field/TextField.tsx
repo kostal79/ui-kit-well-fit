@@ -3,24 +3,28 @@ import { IMaskInput } from "react-imask";
 import clsx from "clsx";
 import styles from "./TextField.module.scss";
 
-type TextFieldSize = "s" | "l" ; 
-const defaultTextFieldSize: TextFieldSize = "s";
+export const textFieldSize = ["s", "l"] as const;
+export type TextFieldSize = (typeof textFieldSize)[number];
+export const defaultTextFieldSize: TextFieldSize = textFieldSize[0];
 
-type Background = "primary" | "secondary";
-const defaultBackground: Background = "primary";
+export const background = ["primary", "secondary"] as const;
+export type Background = (typeof background)[number];
+const defaultBackground: Background = background[0];
 
-
-
-type TextFieldType =
-  | "text"
-  | "tel"
-  | "email"
-  | "password"
-  | "number"
-  | "textarea";
+export const textFieldTypes = [
+  "text",
+  "tel",
+  "email",
+  "password",
+  "number",
+  "textarea",
+] as const;
+export type TextFieldType = (typeof textFieldTypes)[number];
+export const defaultTextFieldType: TextFieldType = textFieldTypes[0];
 
 interface InputProps {
   id?: string;
+  "data-testid"?: string;
   className?: string;
   name?: string;
   TextFieldSize?: TextFieldSize;
@@ -30,7 +34,6 @@ interface InputProps {
   placeholder?: string;
   backgroung?: Background;
   type?: TextFieldType;
-  mask?: React.ComponentProps<typeof IMaskInput>["mask"];
   onChange?: ChangeEventHandler;
   onAccept?: React.ComponentProps<typeof IMaskInput>["onAccept"];
   maxLength?: number;
@@ -38,20 +41,20 @@ interface InputProps {
   tabindex?: number;
   value?: string;
   disabled?: boolean;
-  min?: number;
-  max?: number;
+  maskOptions?: React.ComponentProps<typeof IMaskInput>;
 }
 
 const TextField: React.FC<InputProps> = ({
   className,
   id,
+  "data-testid": dataTestId,
   name,
   TextFieldSize = defaultTextFieldSize,
   label,
   required = false,
   icon,
   placeholder,
-  type = "text",
+  type = defaultTextFieldType,
   backgroung = defaultBackground,
   onChange,
   maxLength,
@@ -59,10 +62,7 @@ const TextField: React.FC<InputProps> = ({
   tabindex,
   value,
   disabled = false,
-  min,
-  max,
-  mask = /[\w*\d*]*/,
-  onAccept,
+  maskOptions,
 }) => {
   const conponentClassName = clsx(styles.container, className, {
     [styles["with-icon"]]: icon,
@@ -75,24 +75,21 @@ const TextField: React.FC<InputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className={conponentClassName}>
+    <div className={conponentClassName} data-testid={dataTestId}>
       <label>
         {label && (
           <p className={styles.label}>
-            {label} {required && <span className={styles.star}>*</span>}
+            {label}{required && <span className={styles.star}> *</span>}
           </p>
         )}
         {type !== "textarea" && (
           <div className={styles["input-box"]}>
             <IMaskInput
+              {...maskOptions}
               type={type}
-              mask={mask}
               className={styles.input}
-              radix="."
               value={value}
-              unmask={true} // true|false|'typed'
               inputRef={inputRef}
-              onAccept={onAccept}
               name={name}
               minLength={minLength}
               maxLength={maxLength}
@@ -100,8 +97,6 @@ const TextField: React.FC<InputProps> = ({
               required={required}
               tabIndex={tabindex}
               disabled={disabled}
-              min={min}
-              max={max}
             />
             {icon && <div className={styles.icon}>{icon}</div>}
           </div>

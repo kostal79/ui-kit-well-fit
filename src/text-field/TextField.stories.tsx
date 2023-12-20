@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TextField } from "./TextField";
 import React, { useState } from "react";
 import { NonVisibleIcon } from "../icons";
+import { IMask } from "react-imask";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof TextField> = {
@@ -22,7 +23,9 @@ export const SimpleText: Story = {
     className: "my-TextField",
     placeholder: "placeholder",
     label: "Simple text",
-    mask: /[\w*\d*]*/,
+    maskOptions: {
+      mask: /[\w*\d*]*/,
+    },
   },
   render: function Render(args) {
     return (
@@ -75,20 +78,23 @@ export const TypePassword: Story = {
     placeholder: "password",
   },
   render: function Render(args) {
-    const [type, setType] = useState<"password" | "text">("password")
+    const [type, setType] = useState<"password" | "text">("password");
     const Icon = () => {
       return (
-        <div onClick={() => {
-          const newType = type === "password" ? "text" : "password";
-          setType(newType)
-          }} style={{cursor: "pointer"}}>
+        <div
+          onClick={() => {
+            const newType = type === "password" ? "text" : "password";
+            setType(newType);
+          }}
+          style={{ cursor: "pointer" }}
+        >
           <NonVisibleIcon color="#909CB5" />
         </div>
-      )
-    }
+      );
+    };
     return (
       <div style={{ width: "300px" }}>
-        <TextField {...args} icon={<Icon />} type={type}/>
+        <TextField {...args} icon={<Icon />} type={type} />
       </div>
     );
   },
@@ -99,7 +105,9 @@ export const TextWithMask: Story = {
     type: "text",
     label: "serial number",
     required: false,
-    mask: '000-000-000',
+    maskOptions: {
+      mask: "000-000-000",
+    },
     placeholder: "XXX-XXX-XXX",
     onAccept: (value, mask) => console.log(mask.value),
   },
@@ -130,9 +138,14 @@ export const TypeTextarea: Story = {
 
 export const TypePhone: Story = {
   args: {
+    label: "Phone",
     type: "tel",
     placeholder: "+7 (_ _ _) - _ _ _ - _ _ - _ _",
-    mask: "+{7}(000)-000-00-00",
+    maskOptions: {
+      mask: "+{7}(000)-000-00-00",
+      unmask: false,
+      onAccept: (value) => console.log(value),
+    },
     required: false,
   },
   render: function Render(args) {
