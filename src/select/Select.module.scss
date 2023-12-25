@@ -1,27 +1,121 @@
 @import "../styles/main.scss";
 
 .container {
-    position: relative;
-    min-width: 340px;
-    & .select {
-        appearance: none;
-        -webkit-appearance: none;
-        width: 100%;
-        font-weight: 400;
-        line-height: 150%;
-    }
+  position: relative;
+  width: 100%;
+}
+
+.select-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid transparentize($color-light-grey, 0.7);
+  border-radius: 6px;
+  background-color: #fff;
+  color: $color-light-grey;
+  cursor: pointer;
+}
+
+.select-button--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.label {
+  display: block;
 }
 
 .size--s {
-    & .select {
-        font-size: $fonts-small-upper;
-        padding: 8px;
+  font-size: $fonts-small-upper;
+  .select-button {
+    padding: 8px;
+    .icon {
+      display: none;
     }
+  }
+  .label {
+    margin-bottom: 8px;
+    font-size: $fonts-small-upper;
+  }
+  .options {
+    gap: 8px;
+    padding: 8px;
+  }
 }
 
 .size--l {
-    & .select {
-        font-size: $fonts-medium;
-        padding: 10px;
+  font-size: $fonts-medium;
+  .select-button {
+    padding: 10px;
+  }
+  .label {
+    margin-bottom: 10px;
+    font-size: $fonts-medium;
+  }
+  .options {
+    gap: 10px;
+    padding:10px;
+  }
+}
+
+.options {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 51.3px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  background-color: white;
+  border: 1px solid transparentize($color-light-grey, 0.7);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  li {
+    position: relative;
+    label {
+      cursor: pointer;
+      color: $color-light-grey;
     }
+    &:hover {
+      label {
+        color: $color-secondary-light-grey;
+      }
+    }
+    input {
+      &:checked ~ label {
+        color: $color-secondary-light-grey;
+      }
+    }
+    &:focus {
+      label {
+        color: $color-secondary-light-grey;
+      }
+    }
+  }
+  input[type="radio"] {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+  }
+  &:focus-within {
+    box-shadow: 0 10px 25px $color-light-grey;
+    outline: none;
+  }
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 25px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 25px;
+  }
 }
