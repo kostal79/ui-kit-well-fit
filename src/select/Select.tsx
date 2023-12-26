@@ -1,30 +1,20 @@
 import React, { useState } from "react";
 import styles from "./Select.module.scss";
-import Options from "./Option/Options";
 import clsx from "clsx";
 import { ArrowDownIcon } from "../icons";
-
-export const sizes = ["s", "l"] as const;
-export type SelectSize = (typeof sizes)[number];
-export const defaultSize: SelectSize = sizes[0];
-
-export interface SelectProps {
-  classNameAdditional?: string;
-  label?: string;
-  name: string;
-  placeholder: string;
-  selectSize: SelectSize;
-  optionList?: Array<string>;
-  onChange: () => void;
-  "data-testid": string;
-}
+import OptionList from "./option-list/OptionLIst";
+import {
+  SelectProps,
+  SelectValueFunction,
+  defaultSelectSize,
+} from "./types";
 
 const Select = ({
   classNameAdditional,
   label,
   name,
-  selectSize = defaultSize,
-  optionList = [],
+  selectSize = defaultSelectSize,
+  optionList,
   "data-testid": dataTestId,
   placeholder,
 }: SelectProps) => {
@@ -32,7 +22,7 @@ const Select = ({
     placeholder ? placeholder : ""
   );
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean | "default">("default");
 
   const customSelectClassName = clsx(styles.container, classNameAdditional!, {
     [styles["size--s"]]: selectSize === "s",
@@ -40,17 +30,23 @@ const Select = ({
   });
 
   const selectButtonClassName = clsx(styles["select-button"], {
-    [styles["select-button--open"]] : isOpen,
-    [styles["select-button--close"]] : !isOpen
-  })
-
-  const optionsClassName = clsx(styles.options, {
-    [styles["options--open"]] : isOpen,
-    [styles["options--close"]] : !isOpen
-  })
+    [styles["select-button--open"]]: isOpen,
+    [styles["select-button--close"]]: !isOpen,
+  });
 
 
   const ariaControl: string = `select-dropdown-${name}`;
+
+  const openToogler: () => void = () => {
+    setIsOpen((prev) => {
+      if (prev === "default" || prev === false) return true;
+      return false
+    });
+  };
+
+  const selectedValueHandler: SelectValueFunction = (value) => {
+    setSelectedValue(value);
+  };
 
   return (
     <div className={customSelectClassName} data-testid={dataTestId}>
@@ -62,13 +58,20 @@ const Select = ({
         aria-haspopup="listbox"
         aria-expanded="false"
         aria-controls={ariaControl}
+        onClick={openToogler}
       >
         <span className={styles["selected-value"]}>{selectedValue}</span>
         <span className={styles.icon}>{<ArrowDownIcon color="#909CB5" />}</span>
       </button>
-      <ul className={optionsClassName} role="listbox" id={ariaControl}>
-        {<Options optionList={optionList} name={name} />}
-      </ul>
+      <OptionList
+        items={optionList}
+        name={name}
+        onChange={(value) => console.log(value)}
+        isOpen={isOpen}
+        setIsOpen={openToogler}
+        selectedValue={selectedValue}
+        setSelectedValue={selectedValueHandler}
+      />
     </div>
   );
 };

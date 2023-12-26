@@ -18,11 +18,6 @@
   cursor: pointer;
 }
 
-.select-button--open {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
 .label {
   display: block;
 }
@@ -42,10 +37,12 @@
   .options {
     gap: 8px;
     padding: 8px;
+    top: 43.3px;
   }
 }
 
-.size--l {
+.size--l,
+.select--m {
   font-size: $fonts-medium;
   .select-button {
     padding: 10px;
@@ -56,7 +53,8 @@
   }
   .options {
     gap: 10px;
-    padding:10px;
+    padding: 10px;
+    top: 55px;
   }
 }
 
@@ -64,14 +62,12 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 51.3px;
   padding: 0;
   list-style: none;
   width: 100%;
   background-color: white;
   border: 1px solid transparentize($color-light-grey, 0.7);
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-radius: 6px;
   border-top: none;
   max-height: 200px;
   overflow-y: auto;
@@ -87,11 +83,7 @@
         color: $color-secondary-light-grey;
       }
     }
-    input {
-      &:checked ~ label {
-        color: $color-secondary-light-grey;
-      }
-    }
+
     &:focus {
       label {
         color: $color-secondary-light-grey;
@@ -104,7 +96,7 @@
     opacity: 0;
   }
   &:focus-within {
-    box-shadow: 0 10px 25px $color-light-grey;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     outline: none;
   }
   &::-webkit-scrollbar {
@@ -117,5 +109,49 @@
   &::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 25px;
+  }
+
+  .item-label--checked {
+    color: $color-secondary-light-grey;
+  }
+
+}
+
+.options--default {
+  display: none;
+}
+.options--opened {
+  @include animation("selectSlideShow .1s ease-out forwards");
+}
+
+.options--closed {
+  @include animation("selectSlideHide .1s ease-out forwards");
+}
+
+
+@keyframes selectSlideHide {
+  0% {
+    visibility:visible;
+    opacity:1;
+    transform:translateY(0)
+  }
+  99% {
+    transform:translateY(10px)
+  }
+  to {
+    visibility:hidden;
+    opacity:0;
+    display: none;
+  }
+}
+
+@keyframes selectSlideShow  {
+  0% {
+    opacity:0;
+    transform:translateY(10px)
+  }
+  to {
+    opacity:1;
+    transform:translateY(0)
   }
 }

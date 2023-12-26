@@ -21,7 +21,14 @@ export const Primary: Story = {
     placeholder: "Cities",
     name: "cities",
     label: "Cities",
-    optionList: ["New York", "Moscow", "London", "Paris", "Chicago", "Madrid", "Rome", "New Vasyuki"],
+    optionList: [
+      {label: "New York", value: "New York"},
+      {label: "Moscow", value: "Moscow"},
+      {label: "London", value: "London"},
+      {label: "Paris", value: "Paris"},
+      {label: "Tokio", value: "Tokio"},
+      {label: "Chicago", value: "Chicago"},
+    ],
   },
   render: function Render(args) {
     return (
