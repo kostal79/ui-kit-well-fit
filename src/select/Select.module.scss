@@ -1,4 +1,4 @@
-@import "../styles/main.scss";
+  @import "../styles/main.scss";
 
 .container {
   position: relative;
@@ -16,6 +16,25 @@
   background-color: #fff;
   color: $color-light-grey;
   cursor: pointer;
+  &:focus {
+    outline: none;
+    border: 1px solid $color-light-grey;
+  }
+}
+
+.icon {
+  display: flex;
+  transition:all .1s;
+}
+
+.select-button--selected {
+  color: $color-dark-grey;
+}
+
+.select-button--open {
+  .icon {
+    transform:rotate(180deg)
+  }
 }
 
 .label {

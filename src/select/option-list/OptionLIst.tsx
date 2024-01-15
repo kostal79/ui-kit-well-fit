@@ -21,7 +21,7 @@ const OptionList = ({
     [styles["options--default"]] : isOpen === "default"
   });
 
-  const options = items.map((option) => {
+  const options = items.map((option, ind) => {
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSelectedValue(e.target.value);
       setIsOpen();
@@ -37,6 +37,7 @@ const OptionList = ({
         value={option.value}
         checked={selectedValue === option.value}
         onChange={changeHandler}
+        tabIndex={0}
       />
     );
   });

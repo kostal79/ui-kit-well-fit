@@ -30,8 +30,9 @@ const Select = ({
   });
 
   const selectButtonClassName = clsx(styles["select-button"], {
-    [styles["select-button--open"]]: isOpen,
+    [styles["select-button--open"]]: isOpen === true,
     [styles["select-button--close"]]: !isOpen,
+    [styles["select-button--selected"]] : selectedValue && selectedValue !== placeholder,
   });
 
 

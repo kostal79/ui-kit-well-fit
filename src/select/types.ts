@@ -12,6 +12,7 @@ export interface OptionProps {
   checked?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
+  tabIndex?: number;
 }
 
 export interface OptionsListProps {

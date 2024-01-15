@@ -10,6 +10,7 @@ const Option = ({
   checked = false,
   onChange,
   disabled = false,
+  tabIndex,
 }: OptionProps) => {
   const liClassName = clsx(styles.li, {
     [styles["li--checked"]] : checked,
@@ -22,8 +23,8 @@ const Option = ({
   })
 
   return (
-    <li className={liClassName} role="option" key={`${name}-${value}`}>
-      <label className={labelClassName}>
+    <li className={liClassName} role="option" key={`${name}-${value}`} tabIndex={tabIndex}>
+      <label className={labelClassName} >
         <input
           type="radio"
           name={name}
