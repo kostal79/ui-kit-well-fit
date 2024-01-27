@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Select.module.scss";
 import clsx from "clsx";
 import { ArrowDownIcon } from "../icons";
 import OptionList from "./option-list/OptionLIst";
-import {
-  ISelectProps,
-  SelectValueFunction,
-  defaultSelectSize,
-} from "./types";
+import { ISelectProps, SelectValueFunction, defaultSelectSize } from "./types";
+import { Button } from "../button";
 
 const Select = ({
   classNameAdditional,
@@ -32,18 +29,36 @@ const Select = ({
   const selectButtonClassName = clsx(styles["select-button"], {
     [styles["select-button--open"]]: isOpen === true,
     [styles["select-button--close"]]: !isOpen,
-    [styles["select-button--selected"]] : selectedValue && selectedValue !== placeholder,
+    [styles["select-button--selected"]]:
+      selectedValue && selectedValue !== placeholder,
   });
-
 
   const ariaControl: string = `select-dropdown-${name}`;
 
   const openToogler: () => void = () => {
     setIsOpen((prev) => {
       if (prev === "default" || prev === false) return true;
-      return false
+      return false;
     });
   };
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const onClickOutside = (event: MouseEvent) => {
+    if (
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", onClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+    };
+  }, []);
 
   const selectedValueHandler: SelectValueFunction = (value) => {
     setSelectedValue(value);
@@ -53,6 +68,7 @@ const Select = ({
     <div className={customSelectClassName} data-testid={dataTestId}>
       {label && <label className={styles.label}>{label}</label>}
       <button
+        ref={buttonRef}
         className={selectButtonClassName}
         role="combobox"
         aria-labelledby="select button"
