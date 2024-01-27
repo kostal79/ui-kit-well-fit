@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { ArrowDownIcon } from "../icons";
 import OptionList from "./option-list/OptionLIst";
 import {
-  SelectProps,
+  ISelectProps,
   SelectValueFunction,
   defaultSelectSize,
 } from "./types";
@@ -17,7 +17,7 @@ const Select = ({
   optionList,
   "data-testid": dataTestId,
   placeholder,
-}: SelectProps) => {
+}: ISelectProps) => {
   const [selectedValue, setSelectedValue] = useState<string>(
     placeholder ? placeholder : ""
   );
@@ -67,7 +67,7 @@ const Select = ({
       <OptionList
         items={optionList}
         name={name}
-        onChange={(value) => console.log(value)}
+        onChange={() => {}}
         isOpen={isOpen}
         setIsOpen={openToogler}
         selectedValue={selectedValue}

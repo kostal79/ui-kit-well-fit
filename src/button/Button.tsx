@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC } from "react";
 import styles from "./Button.module.scss";
 import clsx from "clsx";
 

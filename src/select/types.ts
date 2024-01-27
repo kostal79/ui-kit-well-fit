@@ -2,10 +2,10 @@ export const selectSize = ["s", "m", "l"] as const;
 export type SelectSize = (typeof selectSize)[number];
 export const defaultSelectSize: SelectSize = selectSize[0];
 
-export type OptionList = Pick<OptionProps, "label" | "name" | "value">;
+export type OptionList = Pick<IOptionProps, "label" | "name" | "value">;
 export type SelectValueFunction = (value: string) => void;
 
-export interface OptionProps {
+export interface IOptionProps {
   label: string;
   name?: string;
   value: string;
@@ -15,17 +15,17 @@ export interface OptionProps {
   tabIndex?: number;
 }
 
-export interface OptionsListProps {
+export interface IOptionsListProps {
   items?: OptionList[];
   name: string;
   selectedValue?: string;
-  onChange?: (e: OptionProps["value"]) => void;
+  onChange?: (e: IOptionProps["value"]) => void;
   isOpen: boolean | "default";
   setIsOpen: () => void;
   setSelectedValue: SelectValueFunction;
 }
 
-export interface SelectProps {
+export interface ISelectProps {
   classNameAdditional?: string;
   label?: string;
   name: string;

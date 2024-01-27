@@ -1,9 +1,9 @@
 import React from "react";
-import { OptionProps } from "../types";
+import { IOptionProps } from "../types";
 import styles from "../Select.module.scss";
 import clsx from "clsx";
 
-const Option = ({
+const OptionItem = ({
   label,
   name,
   value,
@@ -11,7 +11,7 @@ const Option = ({
   onChange,
   disabled = false,
   tabIndex,
-}: OptionProps) => {
+}: IOptionProps) => {
   const liClassName = clsx(styles.li, {
     [styles["li--checked"]] : checked,
     [styles["li--disabled"]] : disabled,
@@ -39,4 +39,4 @@ const Option = ({
   );
 };
 
-export default Option;
+export default OptionItem;

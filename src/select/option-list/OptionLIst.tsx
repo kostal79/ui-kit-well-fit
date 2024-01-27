@@ -1,6 +1,6 @@
 import React from "react";
-import { OptionsListProps } from "../types";
-import Option from "../option/Option";
+import { IOptionsListProps } from "../types";
+import OptionItem from "../option-item/OptionItem";
 import styles from "../Select.module.scss";
 import clsx from "clsx";
 
@@ -12,7 +12,7 @@ const OptionList = ({
   setIsOpen,
   selectedValue,
   setSelectedValue,
-}: OptionsListProps) => {
+}: IOptionsListProps) => {
   if (!items || (items && items.length === 0)) return;
 
   const ulClassName = clsx(styles.options, {
@@ -31,7 +31,7 @@ const OptionList = ({
     };
 
     return (
-      <Option
+      <OptionItem
         label={option.label}
         name={name}
         value={option.value}
