@@ -37,6 +37,10 @@
   }
 }
 
+.select-button--disabled {
+  cursor:default;
+}
+
 .label {
   display: block;
 }

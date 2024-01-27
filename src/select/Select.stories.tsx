@@ -29,6 +29,7 @@ export const Primary: Story = {
       {label: "Tokio", value: "Tokio"},
       {label: "Chicago", value: "Chicago"},
     ],
+    onChange: (event) => console.log("value: ", event.target.value)
   },
   render: function Render(args) {
     return (

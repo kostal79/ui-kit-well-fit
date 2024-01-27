@@ -26,7 +26,7 @@ const OptionList = ({
       setSelectedValue(e.target.value);
       setIsOpen();
       if (onChange) {
-        onChange(e.target.value);
+        onChange(e);
       }
     };
 

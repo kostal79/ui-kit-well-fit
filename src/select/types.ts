@@ -18,20 +18,22 @@ export interface IOptionProps {
 export interface IOptionsListProps {
   items?: OptionList[];
   name: string;
-  selectedValue?: string;
-  onChange?: (e: IOptionProps["value"]) => void;
+  selectedValue?: string | number;
   isOpen: boolean | "default";
   setIsOpen: () => void;
   setSelectedValue: SelectValueFunction;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface ISelectProps {
+export interface ISelectProps
+  extends Omit<React.ComponentProps<"select">, "onChange"> {
   classNameAdditional?: string;
   label?: string;
   name: string;
   placeholder?: string;
   selectSize?: SelectSize;
   optionList?: OptionList[];
-  onChange: () => void;
+  defaultValue?: string | number;
   "data-testid"?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
