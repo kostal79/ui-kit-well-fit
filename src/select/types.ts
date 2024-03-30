@@ -33,7 +33,7 @@ export interface ISelectProps
   placeholder?: string;
   selectSize?: SelectSize;
   optionList?: OptionList[];
-  defaultValue?: string | number;
+  defaultValue?: OptionList["value"];
   "data-testid"?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
