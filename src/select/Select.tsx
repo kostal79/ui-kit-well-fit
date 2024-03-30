@@ -96,7 +96,7 @@ const Select = ({
   );
 };
 
-//some changes in first
+//some changes in first one
 
 export { Select };
 
